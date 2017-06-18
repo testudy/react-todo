@@ -35,6 +35,7 @@ class TodoForm extends Component {
                     floatingLabelText="点击输入下一个待办事项"
                     fullWidth
                     value={this.state.text}
+                    autoComplete="off"
                     onChange={this.handleTextChange}
                 />
             </form>

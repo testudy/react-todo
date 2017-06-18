@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Divider from 'material-ui/Divider';
 
 import AppHeader from './AppHeader';
 import TodoForm from './TodoForm';
@@ -31,20 +30,19 @@ function App(props) {
             <div className="app">
                 <AppHeader />
                 <div className="app-main">
-                    <div className="app-header">
+                    <div className="app-action">
                         <TodoForm onSubmit={props.onCreate}/>
+                        <TodoFilter
+                            value={props.filter}
+                            onChange={props.onFilter}
+                        />
                     </div>
                     <TodoList
                         filter={props.filter}
                         entities={props.entities}
                         onChecked={props.onCompleted}
                     />
-                    <Divider />
                     <div className="app-footer">
-                        <TodoFilter
-                            value={props.filter}
-                            onChange={props.onFilter}
-                        />
                     </div>
                 </div>
             </div>
