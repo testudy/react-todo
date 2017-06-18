@@ -1,11 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 import './TodoFilter.css';
 
-export default function TodoFilter(props) {
+const propTypes = {
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+};
+
+function TodoFilter(props) {
+    const handleChange = (event, value) => {
+        props.onChange(value);
+    };
+
     return (
-        <RadioButtonGroup name="shipSpeed" defaultSelected="all" className="radio-group">
+        <RadioButtonGroup
+            name="filter"
+            defaultSelected={props.value}
+            onChange={handleChange}
+            className="radio-group"
+        >
             <RadioButton
                 value="all"
                 label="全部"
@@ -24,3 +39,7 @@ export default function TodoFilter(props) {
         </RadioButtonGroup>
     );
 };
+
+TodoFilter.propTypes = propTypes;
+
+export default TodoFilter;
