@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
 
 import App from '../component/App';
 
@@ -23,34 +24,37 @@ class Root extends Component {
     }
 
     handleCreate = (text) => {
-        const entities = this.state.entities;
-
-        entities.push({
-            id: this.guid(),
-            text,
-            isCompleted: false,
-            createTimestamp: Date.now(),
-        });
-
-        this.setState({
-            entities,
-        });
+        this.setState(update(this.state, {
+            entities: {
+                $push: [{
+                    id: this.guid(),
+                    text,
+                    isCompleted: false,
+                    createTimestamp: Date.now(),
+                }]
+            }
+        }));
     };
 
     handleCompleted = (id, isCompleted) => {
         const entities = this.state.entities;
-        const entity = entities.find(item => item.id === id);
-        entity.isCompleted = isCompleted;
+        const index = entities.findIndex(item => item.id === id);
 
-        this.setState({
-            entities,
-        });
+        this.setState(update(this.state, {
+            entities: {
+                [index]: {
+                    isCompleted: {
+                        $set: isCompleted,
+                    }
+                }
+            }
+        }));
     };
 
     handleFilter = (filter) => {
-        this.setState({
-            filter,
-        });
+        this.setState(update(this.state, {
+            filter: {$set: filter}
+        }));
     };
 
     render() {
