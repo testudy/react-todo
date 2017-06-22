@@ -1,6 +1,6 @@
 # react-todo
 
-《React开发入门》分享Demo
+本代码库是《React开发入门》分享Demo，[PPT](./React开发入门.pdf)
 
 ## 备注
 
