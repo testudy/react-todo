@@ -6,7 +6,12 @@ import App from '../component/App';
 class Root extends Component {
     state = {
         filter: 'all',
-        entities: [],
+        entities: [{
+            "createTimestamp": 1504869042043,
+            "id": "uj2skslb-hbsa-u7fm-pa5m-6pm5m2u7mm5u",
+            "isCompleted": false,
+            "text": "Hello",
+        }],
     };
 
     /*

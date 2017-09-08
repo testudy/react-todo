@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'material-ui/List';
+import { FlatList } from 'react-native';
 
 import TodoItem from './TodoItem';
+import styles from './TodoList.style.js';
 
 const propTypes = {
     filter: PropTypes.string.isRequired,
@@ -15,9 +16,14 @@ const propTypes = {
 };
 
 function TodoList(props) {
+    console.log(1, props.entities);
+
+    const keyExtractor = (item, index) => item.id;
+
     return (
-        <List>
-            {
+        <FlatList
+            style={styles.container}
+            data={
                 props.entities
                     .filter((item) => {
                         if (props.filter === 'completed') {
@@ -30,15 +36,20 @@ function TodoList(props) {
 
                         return true;
                     })
-                    .map(item => (
-                        <TodoItem
-                            key={item.id}
-                            {...item}
-                            onChecked={props.onChecked}
-                        />
-                    ))
             }
-        </List>
+            renderItem={(item) => {
+                console.log(2, item);
+                return (
+                    <TodoItem
+                        key={item.id}
+                        {...item.item}
+                        onChecked={props.onChecked}
+                    />
+                )
+            }}
+            keyExtractor={keyExtractor}
+        >
+        </FlatList>
     );
 }
 

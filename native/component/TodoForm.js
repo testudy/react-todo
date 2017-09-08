@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { View, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
-import TextField from 'material-ui/TextField';
+
+import styles from './TodoForm.style.js';
 
 class TodoForm extends Component {
     static propTypes = {
@@ -11,7 +13,7 @@ class TodoForm extends Component {
         text: '',
     };
 
-    handleTextChange = (event, value) => {
+    handleTextChange = (value) => {
         this.setState({
             text: value.trim(),
         });
@@ -29,16 +31,13 @@ class TodoForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <TextField
-                    hintText="13:30立项会"
-                    floatingLabelText="点击输入下一个待办事项"
-                    fullWidth
-                    value={this.state.text}
-                    autoComplete="off"
-                    onChange={this.handleTextChange}
-                />
-            </form>
+            <TextInput
+                style={styles.input}
+                placeholder="13:30立项会"
+                value={this.state.text}
+                onChangeText={this.handleTextChange}
+                onSubmitEditing={this.handleSubmit}
+            />
         );
     }
 }

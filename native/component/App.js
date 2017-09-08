@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { StyleSheet, Text, View } from 'react-native';
 
 import AppHeader from './AppHeader';
 import TodoForm from './TodoForm';
-import TodoList from './TodoList';
 import TodoFilter from './TodoFilter';
+import TodoList from './TodoList';
 
-import './App.css';
-
-injectTapEventPlugin();
+import styles from './App.style.js';
 
 const propTypes = {
     filter: PropTypes.string.isRequired,
@@ -26,27 +23,23 @@ const propTypes = {
 
 function App(props) {
     return (
-        <MuiThemeProvider>
-            <div className="app">
-                <AppHeader />
-                <div className="app-main">
-                    <div className="app-action">
-                        <TodoForm onSubmit={props.onCreate}/>
-                        <TodoFilter
-                            value={props.filter}
-                            onChange={props.onFilter}
-                        />
-                    </div>
-                    <TodoList
-                        filter={props.filter}
-                        entities={props.entities}
-                        onChecked={props.onCompleted}
+        <View style={styles.app}>
+            <AppHeader />
+            <View style={styles.appMain}>
+                <View style={styles.appAction}>
+                    <TodoForm onSubmit={props.onCreate}/>
+                    <TodoFilter
+                        value={props.filter}
+                        onChange={props.onFilter}
                     />
-                    <div className="app-footer">
-                    </div>
-                </div>
-            </div>
-        </MuiThemeProvider>
+                </View>
+                <TodoList
+                    filter={props.filter}
+                    entities={props.entities}
+                    onChecked={props.onCompleted}
+                />
+            </View>
+        </View>
     );
 }
 

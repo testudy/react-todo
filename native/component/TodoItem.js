@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItem } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+import { View, Text, Switch } from 'react-native';
+
+import styles from './TodoItem.style.js';
 
 const propTypes = {
     id: PropTypes.string.isRequired,
@@ -11,18 +12,18 @@ const propTypes = {
 };
 
 function TodoItem(props) {
-    const handleChecked = (event, isChecked) => {
+    const handleChecked = (isChecked) => {
         props.onChecked(props.id, isChecked);
     };
 
     return (
-        <ListItem
-            leftCheckbox={<Checkbox
-                checked={props.isCompleted}
-                onCheck={handleChecked}
-            />}
-            primaryText={props.text}
-        />
+        <View style={styles.container}>
+            <Text style={styles.text}>{props.text}</Text>
+            <Switch
+                value={props.isCompleted}
+                onValueChange={handleChecked}
+            />
+        </View>
     );
 }
 
