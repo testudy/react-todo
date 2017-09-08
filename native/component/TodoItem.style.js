@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         paddingVertical: 4,
         flexDirection: 'row',
@@ -12,6 +12,6 @@ const styles = {
     text: {
         color: '#666',
     },
-};
+});
 
 export default styles;

@@ -17,7 +17,7 @@ function TodoItem(props) {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container]}>
             <Text style={styles.text}>{props.text}</Text>
             <Switch
                 value={props.isCompleted}
